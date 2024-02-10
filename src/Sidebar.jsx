@@ -1,31 +1,35 @@
 import React, { useContext, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import { MainContext } from './contexts/MainContext';
 import style from './style.module.css';
 
-const Sidebar = ()=>{
+const Sidebar = () => {
 
-    const {showMenu,setShowMenu} = useContext(MainContext)
-    
+    const { showMenu, setShowMenu } = useContext(MainContext)
+
     return (
-        <div className={`${style.sidebar_section} bg-secondary`} style={showMenu ? {right:0} : {}}>
+        <div className={`${style.sidebar_section} bg-secondary`} style={showMenu ? { right: 0 } : {}}>
             <ul className={`${style.sidebar_list} m-0 p-0`}>
                 <li className={style.sidebar_avatar}>
                     <img src="/assets/images/user2.jpg" alt="" />
                 </li>
-                <li>
-                    <Link to="/"  >کاربران</Link>
-                </li>
-                <li>
-                    <Link to="/posts">پست ها</Link>
-                </li>
-                <li>
-                    <Link to="/gallery">گالری</Link>
-                </li>
-                <li>
-                    <Link to="/todo">کارها</Link>
-                </li>
-            </ul>
+
+                <NavLink className={({ isActive }) => { return isActive ? "active_nav" : "" }} to="/"  >
+                    <li>کاربران</li>
+                </NavLink>
+
+                <NavLink className={({ isActive }) => { return isActive ? "active_nav" : "" }} to="/posts">
+                    <li>پست ها</li>
+                </NavLink>
+
+                <NavLink className={({ isActive }) => { return isActive ? "active_nav" : "" }} to="/gallery">
+                    <li>گالری</li>
+                </NavLink>
+
+                {<NavLink style={({ isActive }) => { return isActive ? { background: "black" } : {} }} to="/todo">
+                    <li>کارها</li>
+                </NavLink>}
+             </ul>
         </div>
     )
 

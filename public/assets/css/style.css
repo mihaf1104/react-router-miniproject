@@ -41,3 +41,9 @@ body{
 .h_fit{
     height: fit-content;
 }
+.active_nav li{
+    background-color: #fff !important;
+    color: black;
+}
+
+

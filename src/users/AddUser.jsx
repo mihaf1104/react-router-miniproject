@@ -1,11 +1,12 @@
 import React from 'react';
-import { Outlet, useParams } from 'react-router';
+import { Outlet, useNavigate, useParams } from 'react-router';
 import style from '../style.module.css'
 import { Link } from 'react-router-dom';
 
 const AddUser = () => {
 
     const { userId } = useParams();
+    const navigate=useNavigate();
 
     return (
         <div className={`${style.item_content} mt-5 p-4 container-fluid container`}>
@@ -44,7 +45,8 @@ const AddUser = () => {
 
                     <div className="col-12 text-start">
                         <Link to="/users">
-                            <button type="button" class="btn btn-danger ms-2">بازگشت</button>
+                            <button type="button" class="btn btn-danger ms-2"
+                            onClick={()=> navigate(-1)}>بازگشت</button>
                         </Link>
                         <button type="submit" class="btn btn-primary" >
                             {userId ? "ویرایش " : "افزودن "}
