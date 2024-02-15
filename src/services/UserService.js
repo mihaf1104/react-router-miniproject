@@ -24,3 +24,11 @@ export const updateUserService = async (data, userId) => {
         })
     };
 }
+
+export const getUserService=async ()=>{
+    const res=await jpAxios.get('/users')
+    if (res)
+    {
+        
+    }
+}
