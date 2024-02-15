@@ -7,14 +7,23 @@ const Users = () => {
 
     const navigate = useNavigate();
     const [users, setUsers] = useState([])
+    const [mainUsers, setMainUsers] = useState([])
 
     useEffect(() => {
         axios.get('https://jsonplaceholder.typicode.com/users')
-            .then(res => { setUsers(res.data) })
+            .then(res => {
+                setUsers(res.data)
+                setMainUsers(res.data)
+            })
             .catch(err => { })
-            console.log("useeffect")
+        console.log("useeffect")
     }, [])
-
+    const handleSearch = (e) => {
+        setUsers(mainUsers.filter(a => a.name.includes(e.target.value)))
+        console.log(users);
+        console.log('main')
+        console.log(mainUsers);
+    }
     const handleDelete = (itemId) => {
         swal({
             title: "حذف رکورد!",
@@ -32,7 +41,7 @@ const Users = () => {
                 }).then(res => {
                     console.log(res)
                     if (res.status === 200) {
-                       console.log("200")
+                        console.log("200")
                         let newUsers = users.filter(a => a.id !== itemId);
                         setUsers(newUsers)
                     }
@@ -52,7 +61,7 @@ const Users = () => {
                 <h4 className="text-center">مدیریت کاربران</h4>
                 <div className="row my-2 mb-4 justify-content-between w-100 mx-0">
                     <div className="form-group col-10 col-md-6 col-lg-4">
-                        <input type="text" className="form-control shadow" placeholder="جستجو" />
+                        <input type="text" className="form-control shadow" placeholder="جستجو" onChange={handleSearch} />
                     </div>
                     <div className="col-2 text-start px-0">
                         <Link to="/users/add" >
