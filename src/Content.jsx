@@ -7,6 +7,7 @@ import Todos from './todos/Todos';
 import Users from './users/Users';
 import { Navigate, Route, Routes } from 'react-router-dom';
 import AddUser from './users/AddUser';
+import WithAlert2 from './HOC/WithAlert2';
 
 const Content = ()=>{
 
@@ -17,7 +18,7 @@ const Content = ()=>{
         setShowMenu(!showMenu)
         console.log(showMenu);
     }
-
+    const renderUser=(Confirm,Alert)=><Users Confirm={Confirm}  Alert={Alert}/>
     return (
         <div className={style.content_section} onClick={()=>{setShowMenu(false)}}>
             <i className={`${style.menu_button} fas fa-bars text-dark m-2 pointer`} 
@@ -26,14 +27,16 @@ const Content = ()=>{
             </i>
 
                <Routes>
-                <Route path='/' element={isUser? <Users/>:<Navigate replace to="/posts"/> } />
+                <Route path='/users' element={isUser? 
+                          <WithAlert2 render={renderUser}/>
+                          :<Navigate replace to="/posts"/> } />
                 <Route path='/users/add' element={<AddUser/>}>
                     <Route path=':userId' element={<Posts/>} />
                 </Route>
                 <Route path='/posts' element={<Posts/>} />
                 <Route path='/gallery' element={<Gallery/>} />
                 <Route path='/todo' element={<Todos/>} />
-                <Route path='*' element={<Users/>} />
+                <Route path='*' element={renderUser} />
                 {/*    */}
                </Routes>
 

@@ -4,20 +4,36 @@ import { Link, useNavigate } from 'react-router-dom';
 import swal from 'sweetalert';
 import axios from 'axios';
 import WithAlert from '../HOC/WithAlert';
+import { Alert, Confirm } from '../Alert/Alert';
+import { getUserService } from '../services/UserService';
 const Users = (props) => {
 
     const navigate = useNavigate();
     const [users, setUsers] = useState([])
     const [mainUsers, setMainUsers] = useState([])
-    const { Confirm, Alert } = props;
+    // const { Confirm, Alert } = props;
+
+    const FillData=async()=>{
+         const res=await getUserService();
+         if (res)
+         { console.log(res)
+            setUsers(res.data);
+         }
+    }
     useEffect(() => {
-        axios.get('https://jsonplaceholder.typicode.com/users')
-            .then(res => {
-                setUsers(res.data)
-                setMainUsers(res.data)
-            })
-            .catch(err => { })
-        console.log("useeffect")
+       FillData();
+        // axios.get('https://jsonplaceholder.typicode.com/users')
+        //     .then(res => {
+        //         setUsers(res.data)
+        //         setMainUsers(res.data)
+        //     })
+        //     .catch(err => { })
+        // console.log("useeffect")
+        return ()=>{
+            console.log("زمانیکه این کامپوننت در حال ترک شدن است اجرا شود");
+        }
+
+
     }, [])
     const handleSearch = (e) => {
         setUsers(mainUsers.filter(a => a.name.includes(e.target.value)))
@@ -126,4 +142,5 @@ const Users = (props) => {
 
 }
 
-export default WithAlert(Users);
+// export default WithAlert(Users);
+export default Users;

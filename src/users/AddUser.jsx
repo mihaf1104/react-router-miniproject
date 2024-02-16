@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Outlet, useNavigate, useParams } from 'react-router';
 import style from '../style.module.css'
 import { Link } from 'react-router-dom';
-import {setUserService,updateUserService} from '../services/UserService';
+import {getUserByIDService, setUserService,updateUserService} from '../services/UserService';
 import { jpAxios } from '../JpAxios';
 
 const AddUser = () => {
@@ -30,24 +30,42 @@ const AddUser = () => {
             updateUserService(data,userId);
         }
     }
+    const getUserById=async()=>{
+       const res=await  getUserByIDService(userId);
+       if (res){
+        setData({
+            name: res.data.name,
+            username: res.data.username,
+            email: res.data.email,
+            address: {
+                street: res.data.address.street,
+                city: res.data.address.city,
+                suite: res.data.address.suite,
+                zipcode: res.data.address.zipcode
+            }
+        })
+       }
+    }
 
     useEffect(() => {
-        jpAxios.get(`/users/${userId}`)
-            .then(res => {
-                console.log(res.data)
-                setData({
-                    name: res.data.name,
-                    username: res.data.username,
-                    email: res.data.email,
-                    address: {
-                        street: res.data.address.street,
-                        city: res.data.address.city,
-                        suite: res.data.address.suite,
-                        zipcode: res.data.address.zipcode
-                    }
-                })
-            })
-            .catch(err => console.log(`error${err}`))
+       getUserById();
+
+        // jpAxios.get(`/users/${userId}`)
+        //     .then(res => {
+        //         console.log(res.data)
+        //         setData({
+        //             name: res.data.name,
+        //             username: res.data.username,
+        //             email: res.data.email,
+        //             address: {
+        //                 street: res.data.address.street,
+        //                 city: res.data.address.city,
+        //                 suite: res.data.address.suite,
+        //                 zipcode: res.data.address.zipcode
+        //             }
+        //         })
+        //     })
+        //     .catch(err => console.log(`error${err}`))
     })
 
     return (
