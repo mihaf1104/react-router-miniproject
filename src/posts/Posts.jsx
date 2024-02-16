@@ -6,9 +6,11 @@ import Counter1 from './Counter1';
 import CounterReducer from './CounterReducer';
 import CallBackExample from '../todos/CallBackExample';
 import UseMemoExample from '../todos/UseMemoExample';
+import useTitle from '../Hooks/useTitle';
+import UseHookCounter from './UseHookCounter';
 
 const Posts = () => {
-
+    useTitle("پست ها")
     return (
         <div className={`${style.item_content} mt-5 p-4 container-fluid`}>
             <h4 className="text-center">مدیریت پست ها</h4>
@@ -24,6 +26,8 @@ const Posts = () => {
             <CallBackExample/>
             <br/>
             <UseMemoExample/>
+            <br/>
+            <UseHookCounter/>
         </div>
     )
 

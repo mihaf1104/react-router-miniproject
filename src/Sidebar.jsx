@@ -14,7 +14,7 @@ const Sidebar = () => {
                     <img src="/assets/images/user2.jpg" alt="" />
                 </li>
 
-                <NavLink className={({ isActive }) => { return isActive ? "active_nav" : "" }} to="/"  >
+                <NavLink className={({ isActive }) => { return isActive ? "active_nav" : "" }} to="/users"  >
                     <li>کاربران</li>
                 </NavLink>
 

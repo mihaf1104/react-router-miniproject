@@ -6,8 +6,9 @@ import axios from 'axios';
 import WithAlert from '../HOC/WithAlert';
 import { Alert, Confirm } from '../Alert/Alert';
 import { getUserService } from '../services/UserService';
+import useTitle from '../Hooks/useTitle';
 const Users = (props) => {
-
+    useTitle("کاربران")
     const navigate = useNavigate();
     const [users, setUsers] = useState([])
     const [mainUsers, setMainUsers] = useState([])
