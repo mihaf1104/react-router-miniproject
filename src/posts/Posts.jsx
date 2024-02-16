@@ -4,6 +4,7 @@ import ClickCount from './ClickCount';
 import HoverCount from './HoverCount';
 import Counter1 from './Counter1';
 import CounterReducer from './CounterReducer';
+import CallBackExample from '../todos/CallBackExample';
 
 const Posts = () => {
 
@@ -18,6 +19,8 @@ const Posts = () => {
             <Counter1 />
             <br />
             <CounterReducer />
+            <br/>
+            <CallBackExample/>
         </div>
     )
 
