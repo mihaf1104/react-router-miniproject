@@ -5,6 +5,7 @@ import HoverCount from './HoverCount';
 import Counter1 from './Counter1';
 import CounterReducer from './CounterReducer';
 import CallBackExample from '../todos/CallBackExample';
+import UseMemoExample from '../todos/UseMemoExample';
 
 const Posts = () => {
 
@@ -21,6 +22,8 @@ const Posts = () => {
             <CounterReducer />
             <br/>
             <CallBackExample/>
+            <br/>
+            <UseMemoExample/>
         </div>
     )
 
