@@ -1,14 +1,14 @@
 import { useState } from "react";
 
-const Counter=HOCComponent=>{
+const Counter=(HOCComponent,number)=>{
 
-    const NewComponent=()=>{
+    const NewComponent=(props)=>{
         const [count,setCount]=useState(0);
         const handleSetCount=()=>{
-             setCount(count+1)
+             setCount(count+number)
          }
         return(
-            <HOCComponent count={count}  handleSetCount={handleSetCount} ></HOCComponent>
+            <HOCComponent {...props}   count={count}  handleSetCount={handleSetCount} ></HOCComponent>
         )
     }
     return NewComponent;

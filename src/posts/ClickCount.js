@@ -1,15 +1,16 @@
-import React, { useState } from 'react';
+import React from 'react';
 import Counter from './Counter';
 
 const ClickCount = (props) => {
      
-    const {count,handleSetCount}=props;
+    const {count,handleSetCount,name}=props;
+    console.log(props)
     return (
 
         <div className='text-center w-100'>
-            <button className='btn btn-success' onClick={handleSetCount}>Click : {count} </button>
+            <button className='btn btn-success' onClick={handleSetCount} >{name} : {count} </button>
 
         </div>
     )
 }
-export default Counter(ClickCount);
+export default Counter(ClickCount,5);

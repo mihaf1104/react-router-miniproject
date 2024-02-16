@@ -1,7 +1,7 @@
 import React from 'react';
 import Counter from './Counter';
 const HoverCount = (props) => {
-     const {count,handleSetCount}=props;
+    const {count,handleSetCount}=props;
     return (
 
         <div className='text-center w-100'>
@@ -10,4 +10,4 @@ const HoverCount = (props) => {
         </div>
     )
 }
-export default Counter(HoverCount);
+export default Counter(HoverCount,3);
